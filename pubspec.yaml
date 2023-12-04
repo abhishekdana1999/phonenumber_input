@@ -1,10 +1,10 @@
 name: phonenumber_input
-description: "Phone number input flutter package"
+description: "Phone Number Input with country code flutter package, quick and easy way to accept phone number from users."
 version: 0.0.1
-homepage: https://github.com/abhishekdana1999/phonenumber_input
+homepage: "https://github.com/abhishekdana1999/phonenumber_input"
 
 environment:
-  sdk: '>=3.2.2 <4.0.0'
+  sdk: '>=3.2.1 <4.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
@@ -14,7 +14,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
