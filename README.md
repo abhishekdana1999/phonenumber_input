@@ -2,10 +2,15 @@
 Welcome to the initial release of PhoneNumberInput, a Flutter widget that allows users to input phone numbers with country code selection. Stay tuned for more exciting features in future releases!
 
 ## Demo
-![Demo 1](./example/assets/phoneNumber_InputDemo%20(3).jpeg)
-![Demo 2](./example/assets/phoneNumber_InputDemo%20(4).jpeg)
-![Demo 3](./example/assets/phoneNumber_InputDemo%20(1).jpeg)
-![Demo 4](./example/assets/phoneNumber_InputDemo%20(2).jpeg)
+
+
+
+
+| 	Demo 1	 | 	Demo 2	 |
+| 	![Demo 1](./example/assets/phoneNumber_InputDemo%20(3).jpeg)	 | 	![Demo 2](./example/assets/phoneNumber_InputDemo%20(2).jpeg)	 |
+
+| 	Demo 3	 | 	Demo 4	 |
+| 	![Demo 3](./example/assets/phoneNumber_InputDemo%20(1).jpeg)	 | 	![Demo 4](./example/assets/phoneNumber_InputDemo%20(4).jpeg)	 |
 
 ## Features
 Phone number input with country code selection
