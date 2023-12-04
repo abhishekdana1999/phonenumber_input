@@ -1,39 +1,85 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# PhoneNumberInput Flutter Widget
+Welcome to the initial release of PhoneNumberInput, a Flutter widget that allows users to input phone numbers with country code selection. Stay tuned for more exciting features in future releases!
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+## Demo
+![Demo 1](./example/assets/phoneNumber_InputDemo%20(3).jpeg)
+![Demo 2](./example/assets/phoneNumber_InputDemo%20(4).jpeg)
+![Demo 3](./example/assets/phoneNumber_InputDemo%20(1).jpeg)
+![Demo 4](./example/assets/phoneNumber_InputDemo%20(2).jpeg)
 
 ## Features
+Phone number input with country code selection
+Customizable label, styles, and dark mode support
+Callbacks for country code and phone number changes.
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+## Installation
+To use this widget in your Flutter project, add the following to your `pubspec.yaml` file:
+```yaml
+dependencies:
+  phonenumber_input: ^1.0.0
+```
+Then, run:
+```js
+flutter pub get
+```
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
 ```dart
-const like = 'sample';
+import 'package:flutter/material.dart';
+import 'package:phonenumber_input/phonenumber_input.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('PhoneNumberInput Demo'),
+        ),
+        body: Center(
+          child: PhoneNumberInput(
+            labelText: 'Phone Number',
+            isDarkMode: false,
+            onCountryCodeChanged: (code) {
+              print('Country code changed: $code');
+            },
+            onPhoneNumberChanged: (phoneNumber) {
+              print('Phone number changed: $phoneNumber');
+            },
+          ),
+        ),
+      ),
+    );
+  }
+}
 ```
 
-## Additional information
+## Widget Properties
+- `labelText (String)`: The label text for the phone number input.
+- `padding (EdgeInsetsGeometry)`: Padding for the widget.
+- `labelStyle (TextStyle)`: Style for the label text.
+- `countryCodeStyle (TextStyle)`: Style for the country code text.
+- `isDarkMode (bool)`: Set to true for dark mode, false for light mode.
+- `onCountryCodeChanged (Function(String)?)`: Callback for country code changes.
+- `onPhoneNumberChanged (Function(String)?)`: Callback for phone number changes.
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+## Example
+
+```dart
+PhoneNumberInput(
+  labelText: 'Phone Number',
+  isDarkMode: false,
+  onCountryCodeChanged: (code) {
+    print('Country code changed: $code');
+  },
+  onPhoneNumberChanged: (phoneNumber) {
+    print('Phone number changed: $phoneNumber');
+  },
+)
+```
+Thank you for using PhoneNumberInput! Feel free to contribute, report issues, or suggest new features. Enjoy coding with Flutter!
