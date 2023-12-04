@@ -15,7 +15,7 @@ class _CountryCodeSelectorState extends State<CountryCodeSelector> {
   List countries = [];
   List filteredCountries = [];
   final TextEditingController _searchController = TextEditingController();
-  var selectedCountry;
+  var selectedCountry = {};
 
   @override
   void initState() {
@@ -38,15 +38,15 @@ class _CountryCodeSelectorState extends State<CountryCodeSelector> {
 
 
   void searchCountry(String query) {
-    List _filteredCountries = [];
-    _filteredCountries.addAll(countries);
+    List filterCountries = [];
+    filterCountries.addAll(countries);
     if(query.isNotEmpty) {
       List tempCountries = [];
-      _filteredCountries.forEach((country) {
+      for (var country in filterCountries) {
         if(country['name'].toString().toLowerCase().contains(query.toLowerCase())) {
           tempCountries.add(country);
         }
-      });
+      }
       setState(() {
         filteredCountries = tempCountries;
       });

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:phonenumber_input/src/countrycode_selector.dart';
 
 class PhoneNumberInput extends StatefulWidget {
