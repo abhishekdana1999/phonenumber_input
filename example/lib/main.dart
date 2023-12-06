@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:phonenumber_input/phonenumber_input.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -44,7 +45,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: darkModeOn ? const Color.fromARGB(221, 48, 48, 48) : Colors.white,
+      backgroundColor:
+          darkModeOn ? const Color.fromARGB(221, 48, 48, 48) : Colors.white,
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(

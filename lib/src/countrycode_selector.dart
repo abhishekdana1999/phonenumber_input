@@ -4,14 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class CountryCodeSelector extends StatefulWidget {
-  const CountryCodeSelector({super.key , required this.darkModeOn});
+  const CountryCodeSelector({
+    super.key,
+    required this.darkModeOn,
+  });
+
+  /// Indicates whether dark mode is enabled in the selector.
   final bool darkModeOn;
+
   @override
   State<CountryCodeSelector> createState() => _CountryCodeSelectorState();
 }
 
 class _CountryCodeSelectorState extends State<CountryCodeSelector> {
-
   List countries = [];
   List filteredCountries = [];
   final TextEditingController _searchController = TextEditingController();
@@ -20,30 +25,31 @@ class _CountryCodeSelectorState extends State<CountryCodeSelector> {
   @override
   void initState() {
     super.initState();
-    loadCountriesFromJson();
-    
+    _loadCountriesFromJson();
   }
 
-
-  Future<void> loadCountriesFromJson() async {
-    String jsonString = await rootBundle.loadString('packages/phonenumber_input/assets/directory.json');
+  /// Loads the list of countries from a JSON file.
+  Future<void> _loadCountriesFromJson() async {
+    String jsonString = await rootBundle
+        .loadString('packages/phonenumber_input/assets/directory.json');
     final data = await json.decode(jsonString);
     setState(() {
       countries = data;
       filteredCountries = countries;
     });
-
-    
   }
 
-
-  void searchCountry(String query) {
+  /// Filters the list of countries based on the search query.
+  void _searchCountry(String query) {
     List filterCountries = [];
     filterCountries.addAll(countries);
-    if(query.isNotEmpty) {
+    if (query.isNotEmpty) {
       List tempCountries = [];
       for (var country in filterCountries) {
-        if(country['name'].toString().toLowerCase().contains(query.toLowerCase())) {
+        if (country['name']
+            .toString()
+            .toLowerCase()
+            .contains(query.toLowerCase())) {
           tempCountries.add(country);
         }
       }
@@ -61,28 +67,39 @@ class _CountryCodeSelectorState extends State<CountryCodeSelector> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: widget.darkModeOn ? const Color.fromARGB(221, 48, 48, 48) : Colors.white,
+      backgroundColor: widget.darkModeOn
+          ? const Color.fromARGB(221, 48, 48, 48)
+          : Colors.white,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
             floating: true,
             pinned: true,
             snap: false,
-            backgroundColor: widget.darkModeOn ? const Color.fromARGB(221, 48, 48, 48) : Colors.white,
+            backgroundColor: widget.darkModeOn
+                ? const Color.fromARGB(221, 48, 48, 48)
+                : Colors.white,
             leading: IconButton(
               onPressed: () => Navigator.pop(context),
-              icon: Icon(Icons.arrow_back_ios_rounded , color: widget.darkModeOn ? Colors.white : Colors.black,),
+              icon: Icon(
+                Icons.arrow_back_ios_rounded,
+                color: widget.darkModeOn ? Colors.white : Colors.black,
+              ),
             ),
-            title: Text("Country Code" , style: TextStyle(
-              color: widget.darkModeOn ? Colors.white : Colors.black,
-              fontWeight: FontWeight.w500,
-              fontSize: 16,
-            ),),
+            title: Text(
+              "Country Code",
+              style: TextStyle(
+                color: widget.darkModeOn ? Colors.white : Colors.black,
+                fontWeight: FontWeight.w500,
+                fontSize: 16,
+              ),
+            ),
             centerTitle: true,
-            
             bottom: AppBar(
               automaticallyImplyLeading: false,
-              backgroundColor: widget.darkModeOn ? const Color.fromARGB(221, 48, 48, 48) : Colors.white,
+              backgroundColor: widget.darkModeOn
+                  ? const Color.fromARGB(221, 48, 48, 48)
+                  : Colors.white,
               title: Container(
                 height: 40,
                 decoration: BoxDecoration(
@@ -91,23 +108,30 @@ class _CountryCodeSelectorState extends State<CountryCodeSelector> {
                 child: Center(
                   child: TextFormField(
                     controller: _searchController,
-                    onChanged: (value) => searchCountry(value),
-                     style: TextStyle(
-                        color: widget.darkModeOn ? Colors.white : const Color.fromRGBO(46, 46, 46, 1),
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14,
-                      ),
+                    onChanged: (value) => _searchCountry(value),
+                    style: TextStyle(
+                      color: widget.darkModeOn
+                          ? Colors.white
+                          : const Color.fromRGBO(46, 46, 46, 1),
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14,
+                    ),
                     decoration: InputDecoration(
                       hintText: "Search",
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4),
                         borderSide: BorderSide(
-                          color: widget.darkModeOn ? Colors.white : const Color.fromRGBO(46, 46, 46, 1),
+                          color: widget.darkModeOn
+                              ? Colors.white
+                              : const Color.fromRGBO(46, 46, 46, 1),
                         ),
                       ),
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+                      contentPadding:
+                          const EdgeInsets.symmetric(horizontal: 16),
                       hintStyle: TextStyle(
-                        color: widget.darkModeOn ? Colors.white30 : const Color.fromRGBO(46, 46, 46, 1),
+                        color: widget.darkModeOn
+                            ? Colors.white30
+                            : const Color.fromRGBO(46, 46, 46, 1),
                         fontWeight: FontWeight.w500,
                         fontSize: 14,
                       ),
@@ -119,30 +143,39 @@ class _CountryCodeSelectorState extends State<CountryCodeSelector> {
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
-              (context , index) => ListTile(
+              (context, index) => ListTile(
                 onTap: () {
                   setState(() {
                     selectedCountry = filteredCountries[index];
                   });
-                  Navigator.pop(context , selectedCountry);
+                  Navigator.pop(context, selectedCountry);
                 },
-                title: Text(filteredCountries[index]['name'], style: TextStyle(
+                title: Text(
+                  filteredCountries[index]['name'],
+                  style: TextStyle(
+                    color: widget.darkModeOn ? Colors.white : Colors.black,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 16,
+                  ),
+                ),
+                subtitle: Text(
+                  filteredCountries[index]['dial_code'],
+                  style: TextStyle(
+                    color: widget.darkModeOn ? Colors.white : Colors.black,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14,
+                  ),
+                ),
+                trailing: Icon(
+                  Icons.arrow_forward_ios_rounded,
                   color: widget.darkModeOn ? Colors.white : Colors.black,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
-                ),),
-                subtitle: Text(filteredCountries[index]['dial_code'] , style: TextStyle(
-                  color: widget.darkModeOn ? Colors.white : Colors.black,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 14,
-                ),),
-                trailing: Icon(Icons.arrow_forward_ios_rounded , color: widget.darkModeOn ? Colors.white : Colors.black,),
+                ),
               ),
               childCount: filteredCountries.length,
             ),
           ),
         ],
-      )
+      ),
     );
   }
 }
